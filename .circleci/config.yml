@@ -1,6 +1,34 @@
 version: 2
 jobs:
-  deploy_to_staging:
+  Development:
+    docker:
+      - image: google/cloud-sdk
+    environment:
+      - PROJECT_NAME: "Parcial-Infra"
+      - GOOGLE_PROJECT_ID: "parcial-infra"
+      - GOOGLE_COMPUTE_ZONE: "us-central1-c"
+      - GOOGLE_CLUSTER_NAME: "testcluster"
+    steps:
+      - checkout
+      - run: 
+          name: Setup Google Cloud SDK
+          command: |
+            apt-get install -qq -y gettext
+            echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+            gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+            gcloud --quiet config set project parcial-infra
+            gcloud --quiet config set compute/zone us-central1-c	
+            gcloud --quiet container clusters get-credentials testcluster
+          
+      - setup_remote_docker
+      - run: 
+          name: Deploy to Kubernetes
+          command: |
+            kubectl delete all --all
+            kubectl apply -f ${HOME}/project/deployment.yaml
+            kubectl apply -f ${HOME}/project/service.yaml
+            kubectl apply -f ${HOME}/project/ingress.yaml
+    Production:
     docker:
       - image: google/cloud-sdk
     environment:
@@ -30,9 +58,9 @@ jobs:
             kubectl apply -f ${HOME}/project/ingress.yaml
 workflows:
   version: 2
-  build_test_deploy:
+  build:
     jobs:
-      - deploy_to_staging:
+      - Development:
           filters:
             branches:
               only: master
