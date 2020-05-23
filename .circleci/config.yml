@@ -64,6 +64,7 @@ workflows:
               only: master
       - Manual-Approval:
           type: approval
+          release-timeout: 200
           requires:
             - Development
       - Production:
