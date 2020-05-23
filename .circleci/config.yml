@@ -47,6 +47,8 @@ jobs:
               gcloud --quiet config set project parcial-infra
               gcloud --quiet config set compute/zone us-central1-c	
               gcloud --quiet container clusters get-credentials testcluster
+              kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
+
           
         - setup_remote_docker
         - run: 
