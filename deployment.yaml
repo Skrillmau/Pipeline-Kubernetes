@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-app1
+  name: appweb1
 spec:
   replicas: 2
   selector:
@@ -13,7 +13,7 @@ spec:
         app: appweb1
     spec:
       containers:
-      - name: deploy-react-app1
+      - name: appweb1
         image: sockshead/react-img:app1
         imagePullPolicy: Always
         ports:
@@ -23,7 +23,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-app2
+  name: appweb2
 spec:
   replicas: 2
   selector:
@@ -35,7 +35,7 @@ spec:
         app: appweb2
     spec:
       containers:
-      - name: deploy-react-app2
+      - name: appweb2
         image: sockshead/react-img:app2
         imagePullPolicy: Always
         ports:
@@ -45,7 +45,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-app
+  name: appweb
 spec:
   replicas: 2
   selector:
@@ -57,7 +57,7 @@ spec:
         app: appweb
     spec:
       containers:
-      - name: deploy-react-app
+      - name: appweb
         image: sockshead/react-img:latest
         imagePullPolicy: Always
         ports:

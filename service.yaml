@@ -2,6 +2,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: appweb1-service
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
   type: LoadBalancer
   selector:
@@ -14,6 +16,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: appweb2-service
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
   type: LoadBalancer
   selector:
@@ -26,6 +30,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: appweb-service
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
   type: LoadBalancer
   selector:
