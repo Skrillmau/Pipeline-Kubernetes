@@ -4,10 +4,16 @@ metadata:
   name: example-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/add-base-url: "true"
 spec:
   rules:
   - http:
       paths:
+      - path: /
+          backend:
+            serviceName: react-app-service1
+            servicePort: 80
         - path: /web-application1
           backend:
             serviceName: appweb1-service
