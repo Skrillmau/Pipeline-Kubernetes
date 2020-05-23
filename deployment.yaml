@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: appweb2
-        image: nikcarp/node-app:latest
+        image: sockshead/node-app:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
