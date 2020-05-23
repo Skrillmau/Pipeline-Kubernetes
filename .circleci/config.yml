@@ -26,7 +26,7 @@ jobs:
           command: |
             kubectl delete all --all
             kubectl apply -f ${HOME}/project/deployment.yaml
-            kubectl apply -f ${HOME}/project/services.yaml
+            kubectl apply -f ${HOME}/project/service.yaml
             kubectl apply -f ${HOME}/project/ingress.yaml
             kubectl rollout status deployment/${PROJECT_NAME}
 workflows:
