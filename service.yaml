@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: appweb1-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: appweb1
   ports:
@@ -15,7 +15,7 @@ apiVersion: v1
 metadata:
   name: appweb2-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: appweb2
   ports:
@@ -27,7 +27,7 @@ apiVersion: v1
 metadata:
   name: appweb-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: appweb
   ports:

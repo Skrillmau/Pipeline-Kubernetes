@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: deploy-react-app2
-        image: sockshead/react-app:app2
+        image: sockshead/react-img:app2
         imagePullPolicy: Always
         ports:
         - containerPort: 80
