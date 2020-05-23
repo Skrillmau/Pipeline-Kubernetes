@@ -19,6 +19,36 @@ jobs:
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
             gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}	
             gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
+            kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
+      - setup_remote_docker
+      - run: 
+          name: Deploy to Kubernetes
+          command: |
+            kubectl delete all --all
+            kubectl apply -f ${HOME}/project/deployment.yaml
+            kubectl apply -f ${HOME}/project/service.yaml
+            kubectl apply -f ${HOME}/project/ingress.yaml
+  Production:
+    docker:
+      - image: google/cloud-sdk
+    environment:
+      - PROJECT_NAME: "Parcial-Infra"
+      - GOOGLE_PROJECT_ID: "parcial-infra"
+      - GOOGLE_COMPUTE_ZONE: "us-central1-c"
+      - GOOGLE_CLUSTER_NAME: "production"
+    steps:
+      - checkout
+      - run: 
+          name: Setup Google Cloud SDK
+          command: |
+            apt-get install -qq -y gettext
+            echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+            gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+            gcloud --quiet config set project parcial-infra
+            gcloud --quiet config set compute/zone us-central1-c	
+            gcloud --quiet container clusters get-credentials testcluster
+            kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
+
           
       - setup_remote_docker
       - run: 
@@ -28,36 +58,6 @@ jobs:
             kubectl apply -f ${HOME}/project/deployment.yaml
             kubectl apply -f ${HOME}/project/service.yaml
             kubectl apply -f ${HOME}/project/ingress.yaml
-    Production:
-      docker:
-        - image: google/cloud-sdk
-      environment:
-        - PROJECT_NAME: "Parcial-Infra"
-        - GOOGLE_PROJECT_ID: "parcial-infra"
-        - GOOGLE_COMPUTE_ZONE: "us-central1-c"
-        - GOOGLE_CLUSTER_NAME: "production"
-      steps:
-        - checkout
-        - run: 
-            name: Setup Google Cloud SDK
-            command: |
-              apt-get install -qq -y gettext
-              echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project parcial-infra
-              gcloud --quiet config set compute/zone us-central1-c	
-              gcloud --quiet container clusters get-credentials testcluster
-              kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
-
-          
-        - setup_remote_docker
-        - run: 
-            name: Deploy to Kubernetes
-            command: |
-              kubectl delete all --all
-              kubectl apply -f ${HOME}/project/deployment.yaml
-              kubectl apply -f ${HOME}/project/service.yaml
-              kubectl apply -f ${HOME}/project/ingress.yaml
 workflows:
   version: 2
   build:
