@@ -12,7 +12,7 @@ spec:
       paths:
         - path: /
           backend:
-            serviceName: react-app-service1
+            serviceName: appweb1-service
             servicePort: 80
         - path: /web-application1
           backend:
