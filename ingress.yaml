@@ -21,4 +21,4 @@ spec:
         - path: /web-application2
           backend:
             serviceName: appweb2-service
-            servicePort: 80
+            servicePort: 3000
