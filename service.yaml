@@ -8,7 +8,7 @@ spec:
   ports:
     - port: 80 # Default port for image
       nodePort: 31000
-  type: LoadBalancer
+  type: NodePort
 ---
 kind: Service
 apiVersion: v1
@@ -20,7 +20,7 @@ spec:
   ports:
     - port: 80 # Default port for image
       nodePort: 31001
-  type: LoadBalancer
+  type: NodePort
 ---
 kind: Service
 apiVersion: v1
