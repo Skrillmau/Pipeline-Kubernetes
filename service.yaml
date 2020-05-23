@@ -4,7 +4,7 @@ metadata:
   name: appweb1-service
 spec:
   selector:
-    app: appweb
+    app: appweb1
   ports:
     - port: 80 # Default port for image
       nodePort: 31000
@@ -16,7 +16,7 @@ metadata:
   name: appweb2-service
 spec:
   selector:
-    app: appweb
+    app: appweb2
   ports:
     - port: 80 # Default port for image
       nodePort: 31001
