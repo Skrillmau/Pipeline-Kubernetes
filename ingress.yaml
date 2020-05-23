@@ -10,11 +10,11 @@ spec:
   rules:
   - http:
       paths:
-        - path: /web-application1
+        - path: /
           backend:
             serviceName: appweb1-service
             servicePort: 80
-        - path: /web-application2
+        - path: /web2
           backend:
             serviceName: appweb2-service
             servicePort: 80
