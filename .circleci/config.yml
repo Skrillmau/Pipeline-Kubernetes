@@ -64,3 +64,10 @@ workflows:
           filters:
             branches:
               only: master
+      - request-testing:
+          type: approval
+          requires:
+            - Development
+      - Production:
+        requires:
+          - request-testing
