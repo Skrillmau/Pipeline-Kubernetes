@@ -25,7 +25,7 @@ jobs:
           name: Deploy to Kubernetes
           command: |
             kubectl delete all --all
-            kubectl apply -f ${HOME}/project/deployment.yaml
+            kubectl apply -f ${HOME}/project/deployments.yaml
             kubectl rollout status deployment/${PROJECT_NAME}
 workflows:
   version: 2
