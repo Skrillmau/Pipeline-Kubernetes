@@ -12,7 +12,7 @@ spec:
       paths:
         - path: /
           backend:
-            serviceName: appweb-service
+            serviceName: appweb1-service
             servicePort: 80
         - path: /web-application1
           backend:
