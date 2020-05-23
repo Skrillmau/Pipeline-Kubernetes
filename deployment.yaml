@@ -41,3 +41,25 @@ spec:
         ports:
         - containerPort: 80
       restartPolicy: Always    
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appweb
+spec:
+  replicas: 4
+  selector:
+      matchLabels:
+        app: appweb
+  template:
+    metadata:
+      labels:
+        app: appweb
+    spec:
+      containers:
+      - name: appweb
+        image: sockshead/react-img:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      restartPolicy: Always  

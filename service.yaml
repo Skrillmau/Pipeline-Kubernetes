@@ -21,3 +21,15 @@ spec:
     - port: 80 # Default port for image
       nodePort: 31001
   type: NodePort
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: appweb-service
+spec:
+  selector:
+    app: appweb
+  ports:
+    - port: 80 # Default port for image
+      nodePort: 31003
+  type: NodePort
