@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: appweb1
+  name: react-app1
 spec:
   replicas: 2
   selector:
@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: appweb
+        app: appweb1
     spec:
       containers:
       - name: appweb1
@@ -23,7 +23,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: appweb2
+  name: react-app2
 spec:
   replicas: 2
   selector:
@@ -32,7 +32,7 @@ spec:
   template:
     metadata:
       labels:
-        app: appweb
+        app: appweb2
     spec:
       containers:
       - name: appweb2
@@ -45,7 +45,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: appweb
+  name: react5-app
 spec:
   replicas: 2
   selector:
