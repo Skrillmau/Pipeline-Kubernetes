@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: appweb1
 spec:
-  replicas: 2
+  replicas: 4
   selector:
       matchLabels:
         app: appweb1
@@ -25,7 +25,7 @@ kind: Deployment
 metadata:
   name: appweb2
 spec:
-  replicas: 2
+  replicas: 4
   selector:
       matchLabels:
         app: appweb2
