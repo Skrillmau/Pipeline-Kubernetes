@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: appweb1
-        image: sockshead/react-img:latest
+        image: sockshead/react-img:app1
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: appweb2
-        image: sockshead/react-img:latest
+        image: sockshead/react-img:app2
         imagePullPolicy: Always
         ports:
         - containerPort: 80
