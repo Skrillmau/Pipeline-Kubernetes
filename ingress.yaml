@@ -14,7 +14,7 @@ spec:
           backend:
             serviceName: appweb1-service
             servicePort: 80
-        - path: /web2
+        - path: /
           backend:
             serviceName: appweb2-service
             servicePort: 80
