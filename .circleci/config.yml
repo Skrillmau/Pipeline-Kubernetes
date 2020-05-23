@@ -19,7 +19,7 @@ jobs:
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
             gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}	
             gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
-            kubectl create clusterrolebinding cluster-admin-binding \ --clusterrole cluster-admin
+            kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin
             kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
       - setup_remote_docker
       - run: 
