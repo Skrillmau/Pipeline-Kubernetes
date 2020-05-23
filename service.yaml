@@ -23,7 +23,7 @@ spec:
   selector:
     app: appweb2
   ports:
-    - port: 80 # Default port for image
+    - port: 3000 # Default port for image
       nodePort: 31001
 ---
 kind: Service
